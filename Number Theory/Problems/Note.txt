@@ -1,0 +1,18 @@
+1. if p1, p2 indicates prime factors of n and e1, e2 indicates it's power respectively
+n = pow(p1, e1) * pow(p2, e2) * .. pow(pn, en) then,
+
+sigma function(sum of all the divisors) = ((pow(p1, e1 + 1) - 1)/(p1 - 1)) * ((pow(p2, e2 + 1) - 1)/(p2 - 1)) * .. ((pow(pn, en + 1) - 1)/(pn - 1));
+
+here's how this formula works,
+let n = 72;
+72 = 2^3 * 3^2;
+2^3 means 2, 2^2, 2^3 are it's divisors which has just 2 as it's factor. Same with 3^2.
+So, let a = 2 + 2^2 + 2^3 must be in the answer. As well as b = 3 + 3^2;
+So, what remaining now is divisors with both 2 and 3 as it's factor. If we think about it a*b does that trick for us.
+We get all those divisors which have both 2 and 3 as it's factor. Like 2*3, 2*(3^2).. And hence the sigma function.
+
+
+
+2. log(number)/log(base) + 1 == number of digit in that base. Actually what log does is divides a number by it’s base 
+then just takes the integer part of the result then divides it again and continues to do so until the number becomes 
+less than the base.Actually if we look at it differently this is what we do in case of base conversion. And hence this..

@@ -1,0 +1,1 @@
+{"name":"Local: A","url":"f:\\CodeC\\Topic Based\\Data Structure\\Problems\\Trie\\A.cpp","tests":[{"id":1678637097400,"input":"2\n5\n6 8 2 4 2\n5\n3 8 2 6 5","output":"Case 1: 14 2\nCase 2: 15 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"f:\\CodeC\\Topic Based\\Data Structure\\Problems\\Trie\\A.cpp","group":"local","local":true}

@@ -1,0 +1,35 @@
+1. EULER'S TOTIENT FUNCTION:Here initially phi[j] == j. So is !(j%i) then what it means is actually there is a factor i in j. 
+So, all the number that i divides will have gcd of atleast i. As all of them have factor i in them. So, our job here is to remove 
+them. j/i denotes the number of number which has i as factor. Now we have to get rid of them hence phi[j] -= phi[j]/i;
+
+
+
+2. EXTENDED GCD: gcd of a and b can be represented like this ax + by = gcd(a, b). Here x and y can be found through EXTENDED GCD. this
+extened gcd can also be used in case of modular multiplicative inverse, linear diophantine equation...
+
+1.1. For MODULAR MULTIPLICATIVE INVERSE we know that it can be expressed like this,
+ax congruent to 1 (mod m);
+here 1 is gcd of m and a. Therefore
+ax + my = 1 (gcd(a, m));
+
+1.2. For LINEAR DIOPHANTINE EQUATION, ax + by = gcd(a, b);
+and tbh this is for what extended gcd was built for.
+
+
+
+3. MODULAR INVERSE: According to fermat's little theorem 
+->a^(m-1) = 1 (mod m)
+->a^(m-2) = a^-1 (mod m)
+
+as stated before, for modular inverse,
+ax congruent to 1 (mod m);
+here x = a^-1;
+So we have to find a^(m-2);
+
+4. COMBINATORICS: C(n, k) = C(n - 1, k - 1) + C(n - 1, k); 
+Or, if we think anout it C(n, r) = (n!)/((n - r)!*r!) = (n - r + 1)*(n - r + 2)....n/r!
+
+And as C(n, r) is always an integer. So, there is always a common factor between the denominator and numerator. So, if we divide both 
+by it's common factor i.e. by gcd(denominator, numerator) then we will be able to avert overflow..
+
+5. Prime Gap: Difference between two consecutive primes. Normally it's too thin. Carner's Conjecture: Max prime gap for n is : pow(log(n), 2);
