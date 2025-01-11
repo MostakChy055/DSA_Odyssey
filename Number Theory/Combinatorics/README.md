@@ -9,8 +9,8 @@
     *n*. Then say we have chosen till the index *j - 1* now as a subsequence can contain multiple good arrays let's take that into consideration and count if next good array starts from *j*.
 
 * [D. Lost Arithmetic Progression](https://codeforces.com/problemset/problem/1673/D)
-## Intuition
-  Here constraints doesn't suggest it'll be a dp problem neither does it feel like one. It will probably be a pure combinatorics problem.
-## Solution
-  *C* contains the common of arrray *A* and *B*. So, B must contain all the element of *C*. And as it an arithmetic progression so *p* (common difference of *C*) must be a divisor of *r*. Now it is true for the common difference *q* as well. But only the elements in *C* can be common for both *A* and *B*. So, *p* and *q* has to be co-prime of each other. So that *p . q = r* and both of them will only meet at *r*. And now all comes down
-when the result will be *-1?* Answer is pretty simple. Element of *B* is set. It has to contain the elements of *C* and can't contain any other element of *A*. So, number of element it can contain with in is pretty much constrained. Only freedom it has is at the front and at the back. We infer that if *c - r < b* then answer will be *-1* as we can have *c - r, c - 2r, ..* any of them as the first element for *B*. But if *c - r >= b* as *p . q = r* or *lcm(p, q) = r* it will meet at c - r which can't happen as it is not at *C*
+  ## Intuition
+    Here constraints doesn't suggest it'll be a dp problem neither does it feel like one. It will probably be a pure combinatorics problem.
+  ## Solution
+    *C* contains the common of arrray *A* and *B*. So, B must contain all the element of *C*. And as it an arithmetic progression so *p* (common difference of *C*) must be a divisor of *r*. Now it is true for the common difference *q* as well. But only the elements in *C* can be common for both *A* and *B*. So, *p* and *q* has to be co-prime of each other. So that *p . q = r* and both of them will only meet at *r*. And now all comes down
+  when the result will be *-1?* Answer is pretty simple. Element of *B* is set. It has to contain the elements of *C* and can't contain any other element of *A*. So, number of element it can contain with in is pretty much constrained. Only freedom it has is at the front and at the back. We infer that if *c - r < b* then answer will be *-1* as we can have *c - r, c - 2r, ..* any of them as the first element for *B*. But if *c - r >= b* as *p . q = r* or *lcm(p, q) = r* it will meet at c - r which can't happen as it is not at *C*
