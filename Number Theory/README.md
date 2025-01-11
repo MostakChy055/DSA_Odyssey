@@ -15,8 +15,10 @@ n . a^{n} \equiv b\pmod{p}
 where p is a prime number.
 This equation can be broken down into simpler form using fermat's theorem:
 ```math
-n = i . (p - 1) + j \n
-n . a^{n} \pmod{p} = ((i . (p - 1) + j) a^{(i . (p - 1) + j)}) \pmod{p}
+n = i . (p - 1) + j = n . a^{n} \pmod{p}
+```
+```math
+((i . (p - 1) + j) a^{(i . (p - 1) + j)}) \pmod{p}
 ```
 
 # Related Problems
