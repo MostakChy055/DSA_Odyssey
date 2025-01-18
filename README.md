@@ -14,6 +14,7 @@ This repository is a collection of DSA based problems that I have solved over th
   using ordered_set = tree<T, null_type, greater<T>, rb_tree_tag, tree_order_statistics_node_update>;
 
   ordered_set<int>os;
+  ordered_set<pair<int, int>>os;
 ```
 To store in increasing order
 ```cpp
