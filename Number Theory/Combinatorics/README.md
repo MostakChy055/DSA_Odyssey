@@ -44,9 +44,9 @@
   ```
   As we there were already *k* number of non-zeros in the prefix and we are taking one here. So, *k - 1* number of non-zeros in total is taken. We can take *3 - k + 1* more at most. And there is one more thing we haven't considered what if the current position is a zero digit? 
   ```math
-  \sum_{i = 0}^{3 - k} \binom{x - 1}{i} \ g^i
+  \sum_{i = 0}^{3 - k} \binom{x - 1}{i} \cdot g^i
   ```
   Now we just have to go through each position add these values. 
   ```math
-  (d - 1) \cdot \sum_{i = 0}^{3 - k + 1} \binom{x - 1}{i} \cdot g ^ i + \sum_{i = 0}^{3 - k} \binom{x - 1}{i} \ g^i
+  (d - 1) \cdot \sum_{i = 0}^{3 - k + 1} \binom{x - 1}{i} \cdot g ^ i + \sum_{i = 0}^{3 - k} \binom{x - 1}{i} \cdot g^i
   ```
