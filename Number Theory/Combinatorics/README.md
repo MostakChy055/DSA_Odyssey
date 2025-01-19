@@ -58,4 +58,4 @@
   ```math
   \binom{n}{3}
   ```
-  ways to choose to form traingle. Now we just have to subtract the points that are in the same line. As they have the same slope, count dx / dy. 
+  ways to choose to form traingle. Now we just have to subtract the points that are in the same line. As they have the same slope, count *dx / dy*. 
