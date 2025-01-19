@@ -52,7 +52,7 @@
   ```
 * [D. Vanya and Triangles](https://codeforces.com/contest/552/problem/D)
   ## Intuition
-  From what we can see here from the constraints we can go *O(n<sup>2</sup>)*, *2-DP*. But this doesn't look like a *2-DP* problem no matter how you look at it (Co-ordinates, even if you connect two points to form sides). To take a closer look at the *O(n<sup>2</sup>) solution. What we know about triangle is if *a, b , c* are thre sides than *a + b > c*, if *c* is the largest side then this alone suffices. But can we do it with in the time frame? Probably no. Let's look at it from another angle in order for a traingle to be digenerate all it's point has to be on the same line right? And their slope is same right?
+  From what we can see here from the constraints we can go *O(n<sup>2</sup>)*, *2-DP*. But this doesn't look like a *2-DP* problem no matter how you look at it (Co-ordinates, even if you connect two points to form sides). To take a closer look at the *O(n<sup>2</sup>)* solution. What we know about triangle is if *a, b , c* are thre sides than *a + b > c*, if *c* is the largest side then this alone suffices. But can we do it with in the time frame? Probably no. Let's look at it from another angle in order for a traingle to be digenerate all it's point has to be on the same line right? And their slope is same right?
   ## Solution
   Initially there are *n* points. there are
   ```math
