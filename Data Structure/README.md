@@ -11,16 +11,16 @@ class segTree{
         }
 
         int mid = (left + right) >> 1;
-        build(node << 1, left, mid);
-        build(node << 1 + 1, mid + 1, right);
-        tree[node] = max(tree[node << 1], tree[node << 1 + 1]);
+        build((node << 1), left, mid);
+        build((node << 1) + 1, mid + 1, right);
+        tree[node] = max(tree[(node << 1)], tree[(node << 1) + 1]);
     }
 
     int query(int node, int left, int right, int l, int r){
-        if(left > l || right < r) return INT_MIN;
-        if(l >= left && r <= right) return tree[node];
+        if (left > r || right < l) return INT_MIN;
+        if (left >= l && right <= r) return tree[node];
         int mid = (left + right) >> 1;
-        return max(query(node << 1, left, mid, l, r), query(node << 1 + 1, mid + 1, right, l, r));
+        return max(query((node << 1), left, mid, l, r), query(((node << 1)) + 1, mid + 1, right, l, r));
     }
 
 public:
