@@ -58,4 +58,10 @@
   ```math
   \binom{n}{3}
   ```
-  ways to choose to form traingle. Now we just have to subtract the points that are in the same line. As they have the same slope, count *dx / dy*. 
+  ways to choose to form traingle. Now we just have to subtract the points that are in the same line. As they have the same slope, count *dx / dy*.
+* [E. Number of Simple Paths](https://codeforces.com/problemset/problem/1622/D)
+  ## Intuition
+  The constraints suggest that we can use code of *O(n<sup>2</sup>)* complexity. We are asked to find substrings of exactly *k* *1* characters. Now we can find all the such substrings easily n that time frame. Now
+  the first issue is we can shuffle, and find the number of different resulting substrings. If a substring is of *n* length then how many different substring can be formed? Definitely not *n!*. There are only two
+  distinct characters, according to this formula *0110 & 01110* are considered different as two *1*s can be of different positions. So what will be formula? *4C2* placcing *2 1s* in *4* different position.  
+  
