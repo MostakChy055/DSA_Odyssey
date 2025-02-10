@@ -13,6 +13,39 @@
     return res;
   }
 ```
+- The number of divisors of a number *t* is at most *O(3∛t)*. This bound comes from **number theory** and is derived based on the prime factorization of *t*.
+
+## **Explanation**
+1. **Divisors from Prime Factorization**  
+   Suppose *t* is factored as:
+   ```math
+   t = p_1^{e_1} \cdot p_2^{e_2} \cdot p_3^{e_3} \cdots p_k^{e_k}
+    ```
+   where *p<sub>1</sub>, p<sub>2</sub>,.., p<sub>k</sub> are distinct prime numbers and e<sub>1</sub>, e<sub>2</sub>, .., e<sub>k</sub>* are their respective exponents.
+
+2. **Formula for Number of Divisors:**  
+   The number of divisors *d(t)* of *t* is given by:
+   ```math
+   d(t) = (e_1 + 1) \cdot (e_2 + 1) \cdot \dots \cdot (e_k + 1)
+   ```
+   Since each exponent e<sub>i</sub> contributes an extra factor to the number of divisors, the growth of *d(t)* is tied to how many prime factors *t* has and how large the exponents are.
+
+3. **Worst-Case Estimation:**  
+   - If *t* is **cube-free** (meaning no prime factor appears more than twice), then *e<sub>i</sub> &le; 2*
+   - The maximum number of distinct prime factors in *t* is approximately *O(log t)*, but in practice, it is usually much smaller.
+   - A common **upper bound** on the number of divisors is:
+     ```math
+     d(t) = O(3\sqrt[3]{t})
+     ```
+     This is derived from the assumption that the product of terms *e<sub>i</sub> + 1* in the divisor formula is maximized when *t* has many small prime factors.
+
+4. **Tighter Bound:**  
+   A more precise bound, established in number theory, is:
+   ```math
+   d(t) = O(t^{1/3} \log t)
+   ```
+   This is useful for computational estimates but is slightly looser than the *O(3∛t)* bound often used in problem-solving.
+
 # Related Problems
 * [D. Yet Another Problem On a Subsequence](https://codeforces.com/contest/1000/problem/D)
   ## Intuition
