@@ -15,6 +15,55 @@
 ```
 - The number of divisors of a number *t* is at most *O(3∛t)*. This bound comes from **number theory** and is derived based on the prime factorization of *t*.
 
+## Möbius Function (μ(n))
+
+The **Möbius function**, denoted as **μ(n)**, is an important number-theoretic function used in combinatorial number theory and the study of arithmetic functions. It is defined as:
+
+**Definition**
+
+The Möbius function **μ(n)** is defined as follows:
+
+```math
+\mu(n) =
+\begin{cases}
+  1, & \text{if } n = 1 \\
+  0, & \text{if } n \text{ has a squared prime factor} \\
+  (-1)^k, & \text{if } n \text{ is a product of } k \text{ distinct prime factors}
+\end{cases}
+```
+
+
+### Important Properties
+
+1. **Multiplicativity**: The Möbius function is **multiplicative**, meaning:
+    ```math
+    \mu(a \cdot b) = \mu(a) \cdot \mu(b), \quad \text{if } \gcd(a, b) = 1
+    ```
+
+2. **Summation Formula**:
+    ```math
+    \sum_{{d \mid n}} \mu(d) =
+    \begin{cases}
+      1, & \text{{if }} n = 1 \\
+      0, & \text{{if }} n > 1
+    \end{cases}
+    ```
+
+3. **Euler’s Totient Function Relation**:
+    ```math
+    \sum_{{d \mid n}} \mu(d) \cdot \frac{{n}}{d} = \phi(n)
+    ```
+    where \( \phi(n) \) is Euler's totient function.
+
+4. **Dirichlet Convolution**:
+    ```math
+    \sum_{{d \mid n}} \mu(d) = [n = 1]
+    ```
+
+5. **Mertens Function**:
+    ```math
+    M(n) = \sum_{{k=1}}^{n} \mu(k)
+    ```
 ## **Explanation**
 1. **Divisors from Prime Factorization**  
    Suppose *t* is factored as:
@@ -46,6 +95,42 @@
    ```
    This is useful for computational estimates but is slightly looser than the *O(3∛t)* bound often used in problem-solving.
 
+   ## Example Values
+
+    <table>
+  <tr>
+    <th style="width:300px;">n</th>
+    <th style="width:150px;">μ(n)</th>
+  </tr>
+  <tr><td>1</td><td>1</td></tr>
+  <tr><td>2</td><td>-1</td></tr>
+  <tr><td>3</td><td>-1</td></tr>
+  <tr><td>4</td><td>0</td></tr>
+  <tr><td>5</td><td>-1</td></tr>
+  <tr><td>6</td><td>1</td></tr>
+  <tr><td>7</td><td>-1</td></tr>
+  <tr><td>8</td><td>0</td></tr>
+  <tr><td>9</td><td>0</td></tr>
+  <tr><td>10</td><td>1</td></tr>
+</table>
+
+## Implementation
+```cpp
+    for(int i = 0; i < n; i += 1){
+        cin >> vc[i]; mul[vc[i]] = (mul[vc[i]] + mul[vc[i]]) % MOD;
+    }
+    for(int i = 1; i < N; i += 1){
+        for(int j = i * 2; j < N; j += i) mul[i] = (mul[i] * mul[j]) % MOD;
+    }
+    mobius[1] = 1;
+    ll ans = 0;
+    for(int i = 1; i < N; i += 1){
+        for(int j = 2 * i; j < N; j += i) mobius[j] = (mobius[j] - mobius[i] + MOD) % MOD;
+    }
+```
+
+## Whispers of Wisdom
+- There's no direct theorem for counting number of subarray's of *gcd = 1*. A way to get around that is use **Möbius function**.
 # Related Problems
 * [D. Yet Another Problem On a Subsequence](https://codeforces.com/contest/1000/problem/D)
   ## Intuition
