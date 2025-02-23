@@ -1,9 +1,32 @@
 # Chores
 ```cpp
-    for(int i = 0; i < 20; i += 1){
-        ncr[i][0] = ncr[i][i] = 1;
-        for(int j = 1; j < i; j += 1) ncr[i][j] = ncr[i - 1][j] + ncr[i - 1][j - 1];
-    }
+    template<int M> struct Combo{
+        ll fact[M + 1], ifact[M + 1];
+    
+        Combo(){
+            fact[0] = ifact[0] = 1LL;
+            for(int i = 1; i < M + 1; i += 1){
+                fact[i] = (fact[i - 1] * i) % MOD;
+                ifact[i] = inverse(fact[i]);
+            }
+        }
+    
+        ll calcPow(ll b, ll p){
+            return (!p?1LL: calcPow(b * b % MOD, p / 2LL) * (p & 1? b: 1LL) % MOD);
+        }
+    
+        ll inverse(ll b){
+            return calcPow(b, MOD - 2);
+        }
+    
+        ll ncr(ll a, ll b){
+            if(a < b) return 0;
+            ll temp = fact[a] * ifact[b] % MOD;
+            temp = temp * ifact[a - b] % MOD;
+    
+            return temp;
+        }
+    };
 ```
 ```cpp
   ll get(ll n, ll nzRem){
@@ -114,7 +137,10 @@ The Möbius function **μ(n)** is defined as follows:
   <tr><td>10</td><td>1</td></tr>
 </table>
 
-## Implementation
+### Intuition
+In order to get number of intgers that form *gcd = 1*, one thing that is important to consider is it can't have sequence of integers which have *gcd > 1* which by extension mean *2, 3, 4, 5..*. Therefore we are substracting the multiples of *2, 3* but why are we adding when we encounter *6?* The reason is simple. To compensate for the resubtraction that happened when we subtracted the multiples of *3s*.
+
+### Implementation
 ```cpp
     for(int i = 0; i < n; i += 1){
         cin >> vc[i]; mul[vc[i]] = (mul[vc[i]] + mul[vc[i]]) % MOD;
@@ -128,7 +154,33 @@ The Möbius function **μ(n)** is defined as follows:
         for(int j = 2 * i; j < N; j += i) mobius[j] = (mobius[j] - mobius[i] + MOD) % MOD;
     }
 ```
+## Stars & Bars Theorem
+The *Stars and Bars theorem* is a combinatorial method used to distribute kk identical objects among nn bins.
+Example 1: Simple Distribution
 
+Imagine you have 4 identical apples and want to distribute them into 3 baskets. One possible way is:
+
+    Basket 1 gets 2 apples
+    Basket 2 gets 1 apple
+    Basket 3 gets 1 apple
+
+We represent this using stars (apples) and bars (dividers):
+∗∗∣∗∣∗
+
+This means:
+
+    First basket gets 2 apples (**)
+    Second basket gets 1 apple (*)
+    Third basket gets 1 apple (*)
+
+For kk objects and nn bins, the number of ways to do this is given by:
+```math
+\binom{k + n - 1}{k}
+```
+where:
+
+    kk = number of identical objects (apples, prime factors)
+    nn = number of bins (baskets, array positions)
 ## Whispers of Wisdom
 - There's no direct theorem for counting number of subarray's of *gcd = 1*. A way to get around that is use **Möbius function**.
 # Related Problems
