@@ -173,14 +173,14 @@ This means:
     Second basket gets 1 apple (*)
     Third basket gets 1 apple (*)
 
-For kk objects and nn bins, the number of ways to do this is given by:
+For k objects and n bins, the number of ways to do this is given by:
 ```math
 \binom{k + n - 1}{k}
 ```
 where:
 
-    kk = number of identical objects (apples, prime factors)
-    nn = number of bins (baskets, array positions)
+    k = number of identical objects (apples, prime factors)
+    n = number of bins (baskets, array positions)
 ## Whispers of Wisdom
 - There's no direct theorem for counting number of subarray's of *gcd = 1*. A way to get around that is use **Möbius function**.
 # Related Problems
