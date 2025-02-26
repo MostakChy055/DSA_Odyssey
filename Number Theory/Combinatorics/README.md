@@ -234,4 +234,25 @@ where:
   The constraints suggest that we can use code of *O(n<sup>2</sup>)* complexity. We are asked to find substrings of exactly *k* *1* characters. Now we can find all the such substrings easily n that time frame. Now
   the first issue is we can shuffle, and find the number of different resulting substrings. If a substring is of *n* length then how many different substring can be formed? Definitely not *n!*. There are only two
   distinct characters, according to this formula *0110 & 01110* are considered different as two *1*s can be of different positions. So what will be formula? *4C2* placcing *2 1s* in *4* different position.  
-  
+
+* [D. Roman and Numbers](https://codeforces.com/problemset/problem/401/D)
+  ## Intuition
+  According to this problem we have to find number of different numbers that we can form by re-arranging the numbers within. Now, first thing that comes into mind is there are 9 possible different numbers so *9x8x7..* but this doesn't work obviously as there can be multiple instances of a digit. How about we keep track of the digits and handle then? It will be like handling each possible. Which will be time consuming. Now if you take a closer look the constraint on n was *n leq 1e18*. Why this though? We could have been given some outrageous number as a string right? This was the hint. *18*. To try traverse through *1<<18* possible ways.
+  ## Solution
+  With the help of bitmask dp we can try every possible combination or arrangement of digits.
+  ```cpp
+  dp[0][0] = 1;
+    for(int mask = 0; mask < (1 << cnt); mask += 1){
+        for(int i = 0; i < cnt; i += 1){
+            if(mask & (1 << i)){
+                if(digits[i] || mask != (1 << i)){
+                    int remMask = mask - (1 << i);
+                    for(int prevRem = 0; prevRem < m; prevRem += 1) dp[mask][(prevRem * 10 + digits[i]) % m] += dp[remMask][prevRem];
+                }
+            }
+        }
+    }
+  ```
+  Here we trying to insert the current digit as the last digit. Consider the division techniques we used to do as kid. We used to take the next remaining digit with the reaminder. That's exactly what we are doing with prevRem * 10 + digits[i]
+  At at last we have divided the result with j!. Where j is the numnber of instances of a digit.
+
