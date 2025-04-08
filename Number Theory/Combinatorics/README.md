@@ -27,6 +27,7 @@
             return temp;
         }
     };
+    Combo<100000> C;
 ```
 ```cpp
   ll get(ll n, ll nzRem){
