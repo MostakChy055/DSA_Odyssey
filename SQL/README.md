@@ -201,3 +201,27 @@ Table: *Person*
       GROUP BY email) p
   );
 ```
+
+## 197. Rising Temperature
+
+Table: *Weather*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>recordDate</td><td>date</td></tr>
+  <tr><td>temperature</td><td>int</td></tr>
+</table>
+
+*Write a solution to find all dates' id with higher temperatures compared to its previous dates (yesterday).*
+```mysql
+  SELECT cd.id
+  FROM Weather as cd
+  WHERE EXISTS(
+      SELECT 1
+      FROM Weather as pv
+      WHERE pv.temperature < cd.temperature AND  cd.recordDate = pv.recordDate + INTERVAL 1 DAY
+  );
+```
