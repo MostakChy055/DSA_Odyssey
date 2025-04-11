@@ -128,3 +128,44 @@ What **GROUP BY** is groups the table based on the value and performs different 
 ```
 
 This joins the two table and checks if *ids* aren't equal and email matches or not. If email matches then that mean there is another person with same email. Exactly what we were looking for.
+
+## 183. Customers Who Never Order
+
+Table: *Customers*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>name</td><td>varchar</td></tr>
+</table>
+
+Table: *Customers*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>customerId</td><td>int</td></tr>
+</table>
+
+*Write a solution to find all customers who never order anything.*
+*Solution 1:*
+```mysql
+  SELECT c.name as Customers
+  FROM Customers c LEFT JOIN Orders o ON c.id = o.customerId
+  WHERE o.customerId IS NULL;
+```
+What this does if *LEFT JOINS* with *Oders* table. As a result we get a table *Customer's* table's id matching with *Oder's* table's *customerId* if there is no such row then that row will be null. But all the *Customer* table's row will be there. So the row with NULL value in the *customerId* column have to be answer.
+
+*Solution 2:*
+```mysql
+  SELECT c.name as Customers
+  FROM Customers c
+  WHERE c.id NOT IN(
+      SELECT customerId
+      FROM Orders
+  );
+```
