@@ -87,9 +87,9 @@ Table: *Employee*
 *Write a solution to find the employees who earn more than their managers.*
 
 ```mysql
-SELECT e2.name Employee
-FROM Employee e1 INNER JOIN Employee e2 ON e1.id = e2.managerId
-WHERE e1.salary < e2.salary;
+  SELECT e2.name Employee
+  FROM Employee e1 INNER JOIN Employee e2 ON e1.id = e2.managerId
+  WHERE e1.salary < e2.salary;
 ```
 If the initial *Employee* table was like this:
 ![image](https://github.com/user-attachments/assets/b151ed51-030e-4592-94c4-30ca32eaaa84)
@@ -98,3 +98,33 @@ Then after **INNER JOIN** the table looks like this:
 ![image](https://github.com/user-attachments/assets/2e6d927b-fd5a-49e9-afe2-d29f2773fdc7)
 
 Then all we have to do is check for the condition if *e1.salary < e2.salary* right?
+
+## 182. Duplicate Emails
+
+Table: *Person*
+
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>email</td><td>varchar</td></tr>
+</table>
+
+```mysql
+  SELECT email
+  FROM Person
+  GROUP BY email
+  HAVING count(email) > 1;
+```
+What **GROUP BY** is groups the table based on the value and performs different operations such as *COUNT(), SUM(), AVG(), MAX(), MIN()*.
+
+*Alternaite solution for this problem can be:*
+```mysql
+  SELECT DISTINCT(p1.email)
+  FROM Person p1, Person p2
+  WHERE p1.id <> p2.id AND p1.email = p2.email;
+```
+
+This joins the two table and checks if *ids* aren't equal and email matches or not. If email matches then that mean there is another person with same email. Exactly what we were looking for.
