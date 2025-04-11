@@ -169,3 +169,35 @@ What this does if *LEFT JOINS* with *Oders* table. As a result we get a table *C
       FROM Orders
   );
 ```
+## 196. Delete Duplicate Emails
+
+*Write a solution to delete all duplicate emails, keeping only one unique email with the smallest id.*
+Table: *Person*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>email</td><td>varchar</td></tr>
+</table>
+
+*Solution 1:*
+```mysql
+  DELETE p1
+  FROM Person p1, Person p2
+  WHERE p1.email = p2.email AND p1.id > p2.id;
+```
+
+*Solution 2:*
+```mysql
+  DELETE
+  FROM Person
+  WHERE id not in (
+      SELECT *
+      FROM
+      (SELECT MIN(id)
+      FROM Person
+      GROUP BY email) p
+  );
+```
