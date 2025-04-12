@@ -279,3 +279,71 @@ Table: *Bonus*
   WHERE b.bonus < 1000 OR b.bonus IS NULL;
 ```
 *POINTERS:* Just using *WHERE b.bonus < 1000* leaves out whoose *b.bonus* is *NULL.*
+
+## 584. Find Customer Referee
+
+*Table:* Customer
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>name</td><td>varchar</td></tr>
+  <tr><td>referee_id</td><td>int</td></tr>
+</table>
+
+  ```mysql
+  SELECT name
+  FROM Customer
+  WHERE referee_id <> 2 OR referee_id IS NULL;
+```
+*POINTERS:* Just using *referee_id <> 2* leaves out who were not refered by any.
+
+## 586. Customer Placing the Largest Number of Orders
+
+*Table:* Orders
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>order_number</td><td>int</td></tr>
+  <tr><td>customer_number</td><td>int</td></tr>
+</table>
+
+*Write a solution to find the customer_number for the customer who has placed the largest number of orders.*
+
+```mysql
+  SELECT customer_number
+  FROM Orders 
+  GROUP BY customer_number ORDER BY COUNT(order_number) DESC LIMIT 1;
+```
+
+Here, *GROUP BY customer_number ORDER BY COUNT(order_number) DESC LIMIT 1;* this groups the table based on *customer_number* then sorts it with respect to *COUNT()* in descending order.
+
+## 595. Big Countries
+
+*Table:* World
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>name</td><td>varchar</td></tr>
+  <tr><td>continent</td><td>varchar</td></tr>
+  <tr><td>area</td><td>int</td></tr>
+  <tr><td>population</td><td>int</td></tr>
+  <tr><td>gdp</td><td>bigint</td></tr>
+</table>
+
+A country is big if:
+- it has an area of at least three million (i.e., 3000000 km2), or
+- it has a population of at least twenty-five million (i.e., 25000000).
+
+*Write a solution to find the name, population, and area of the big countries.*
+```mysql
+  SELECT name, population, area
+  FROM World
+  WHERE area >= 3000000 OR population >= 25000000;
+```
