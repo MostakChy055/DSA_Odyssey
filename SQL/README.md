@@ -246,3 +246,36 @@ Table: *Activity*
   FROM Activity
   GROUP BY player_id;
 ```
+
+## 577. Employee Bonus
+
+Table: *Employee*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>empId</td><td>int</td></tr>
+  <tr><td>name</td><td>varchar</td></tr>
+  <tr><td>supervisor</td><td>int</td></tr>
+  <tr><td>salary</td><td>int</td></tr>
+</table>
+
+Table: *Bonus*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>empId</td><td>int</td></tr>
+  <tr><td>bonus</td><td>int</td></tr>
+</table>
+
+*Write a solution to report the name and bonus amount of each employee with a bonus less than 1000.*
+
+```mysql
+  SELECT e.name, b.bonus
+  FROM Employee e LEFT JOIN Bonus b ON e.empId = b.empId
+  WHERE b.bonus < 1000 OR b.bonus IS NULL;
+```
+*POINTERS:* Just using *WHERE b.bonus < 1000* leaves out whoose *b.bonus* is *NULL.*
