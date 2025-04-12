@@ -225,3 +225,24 @@ Table: *Weather*
       WHERE pv.temperature < cd.temperature AND  cd.recordDate = pv.recordDate + INTERVAL 1 DAY
   );
 ```
+
+## 511. Game Play Analysis I
+
+Table: *Activity*
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>player_id</td><td>int</td></tr>
+  <tr><td>device_id</td><td>int</td></tr>
+  <tr><td>event_date</td><td>date</td></tr>
+  <tr><td>games_played</td><td>int</td></tr>
+</table>
+
+*Write a solution to find the first login date for each player.*
+```mysql
+  SELECT player_id, MIN(event_date) as first_login
+  FROM Activity
+  GROUP BY player_id;
+```
