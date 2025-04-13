@@ -347,3 +347,27 @@ A country is big if:
   FROM World
   WHERE area >= 3000000 OR population >= 25000000;
 ```
+
+## 596. Classes More Than 5 Students
+*Table:* Courses
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>student</td><td>varchar</td></tr>
+  <tr><td>class</td><td>varchar</td></tr>
+</table>
+
+*Write a solution to find all the classes that have at least five students.*
+
+```mysql
+  SELECT A.class
+  FROM(
+      SELECT class, COUNT(student) as totalStudent
+      FROM Courses
+      GROUP BY class
+   ) A
+  WHERE A.totalStudent > 4;
+```
+*POINTERS:* Here, aliasing the table was necessary. As each subqeury has to have a seperate name. You can think of it as how to differentiate between original *Courses* table and this?
