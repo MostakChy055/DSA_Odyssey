@@ -371,3 +371,26 @@ A country is big if:
   WHERE A.totalStudent > 4;
 ```
 *POINTERS:* Here, aliasing the table was necessary. As each subqeury has to have a seperate name. You can think of it as how to differentiate between original *Courses* table and this?
+
+## 619. Biggest Single Number
+
+*Table:* MyNumbers
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>num</td><td>int</td></tr>
+</table>
+
+Find the largest single number. If there is no single number, report null.
+```mysql
+  SELECT MAX(A.num) as num
+  FROM(
+      SELECT num
+      FROM MyNumbers
+      GROUP BY num
+      HAVING COUNT(num) = 1
+  ) A;
+```
+*POINTERS:* We can group and count the same values. We can perform *MAX()* operation with out using *GROUP BY*.
