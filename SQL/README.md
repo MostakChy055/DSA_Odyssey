@@ -394,3 +394,98 @@ Find the largest single number. If there is no single number, report null.
   ) A;
 ```
 *POINTERS:* We can group and count the same values. We can perform *MAX()* operation with out using *GROUP BY*.
+
+## 620. Not Boring Movies
+
+*Table:* Cinema
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>movie</td><td>varchar</td></tr>
+  <tr><td>description</td><td>varchar</td></tr>
+  <tr><td>rating</td><td>float</td></tr>
+</table>
+
+*Question: *Write a solution to report the movies with an odd-numbered ID and a description that is not "boring".
+Return the result table ordered by rating in descending order.
+
+  ```mysql
+  SELECT *
+  FROM Cinema
+  WHERE MOD(id, 2) = 1 AND description <> 'boring' ORDER BY rating DESC;
+```
+
+## 627. Swap Salary
+
+*Table:* Salary
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>id</td><td>int</td></tr>
+  <tr><td>name</td><td>varchar</td></tr>
+  <tr><td>sex</td><td>ENUM</td></tr>
+  <tr><td>salary</td><td>int</td></tr>
+</table>
+
+*Write a solution to swap all 'f' and 'm' values (i.e., change all 'f' values to 'm' and vice versa) with a single update statement and no intermediate temporary tables.*
+```mysql
+  UPDATE Salary
+  SET sex = (CASE WHEN sex = 'f' then 'm' ELSE 'f' END);
+```
+
+## 1050. Actors and Directors Who Cooperated At Least Three Times
+*Table:* ActorDirector
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>actor_id</td><td>int</td></tr>
+  <tr><td>director_id</td><td>int</td></tr>
+  <tr><td>timestamp</td><td>int</td></tr>
+</table>
+
+*Write a solution to find all the pairs (actor_id, director_id) where the actor has cooperated with the director at least three times.*
+  ```mysql
+  SELECT actor_id, director_id
+  FROM ActorDirector
+  GROUP BY actor_id, director_id
+  HAVING COUNT(timestamp) > 2;
+```
+*POINTERS:* You can use *GROUP BY* on two elements at once.
+
+## 1068. Product Sales Analysis I
+
+*Table:* Sales
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>sale_id</td><td>int</td></tr>
+  <tr><td>product_id</td><td>int</td></tr>
+  <tr><td>year</td><td>int</td></tr>
+  <tr><td>quantity</td><td>int</td></tr>
+  <tr><td>price</td><td>int</td></tr>
+</table>
+
+*Table:* Product
+<table>
+  <tr>
+    <th style="width:300px;">Column Name</th>
+    <th style="width:150px;">Type</th>
+  </tr>
+  <tr><td>product_id</td><td>int</td></tr>
+  <tr><td>product_name</td><td>varchar</td></tr>
+</table>
+
+*Write a solution to report the product_name, year, and price for each sale_id in the Sales table*
+```mysql
+  SELECT p.product_name as product_name, s.year as year, s.price as price
+  FROM Sales s LEFT JOIN Product p ON p.product_id = s.product_id;
+```
