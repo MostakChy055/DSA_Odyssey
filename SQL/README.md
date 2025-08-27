@@ -141,7 +141,7 @@ Table: *Customers*
   <tr><td>name</td><td>varchar</td></tr>
 </table>
 
-Table: *Customers*
+Table: *Orders*
 <table>
   <tr>
     <th style="width:300px;">Column Name</th>
